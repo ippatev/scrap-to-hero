@@ -16,7 +16,7 @@ A 2D platformer rpg game that lets you use of many skills provided in the game t
 
 - Open your Vscode in the project root directory.
 - Make sure Cmake is installed.
-- Open a new terminal and type ``npm install`.
+- Open a new terminal and type `npm install`.
 - Open the game by typing `npm start`
 
 # Contributors
