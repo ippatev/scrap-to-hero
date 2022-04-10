@@ -1,5 +1,6 @@
 const { CharacterModel } = require("../models/character_model");
 const Lib = require("raylib");
+const { directionEnum } = require("../helpers/enums");
 
 class PlayerController extends CharacterModel {
   #state = this.idleRender();
@@ -12,22 +13,26 @@ class PlayerController extends CharacterModel {
     return this.#state;
   }
 
-  actionListner = () => {
-    if (Lib.IsKeyDown(Lib.KEY_RIGHT)) {
-      this.#onKeyPressedAction("right");
-    } else if (Lib.IsKeyDown(Lib.KEY_LEFT)) {
-      this.#onKeyPressedAction("left");
-    } else {
-      this.#state = this.idleRender();
+  actionListener = () => {
+    if (Lib.IsKeyDown(Lib.KEY_LEFT)) {
+      return this.#onKeyPressedAction(directionEnum.left);
     }
+
+    if (Lib.IsKeyDown(Lib.KEY_RIGHT)) {
+      return this.#onKeyPressedAction(directionEnum.right);
+    }
+
+    this.#state = this.idleRender();
   };
 
-  #onKeyPressedAction = (type) => {
-    if (type === "left") {
-      this.#state = this.runningRender();
+  #onKeyPressedAction = (key) => {
+    if (key === directionEnum.left) {
+      this.#state = this.runningRender(directionEnum.left);
       this.posX -= 2;
-    } else if (type === "right") {
-      this.#state = this.runningRender();
+    }
+
+    if (key === directionEnum.right) {
+      this.#state = this.runningRender(directionEnum.right);
       this.posX += 2;
     }
   };

@@ -5,6 +5,7 @@ const {
   screenHeight,
   screenWidth,
 } = require("../helpers/constant");
+const { directionEnum } = require("../helpers/enums");
 
 class CharacterModel {
   /**
@@ -45,9 +46,22 @@ class CharacterModel {
 
   /**
    * @method runningRender() - Call to render running state of the character
+   * @param { string } direction - Indication of direction; use directionEnum keys
    */
-  runningRender = () => {
-    Lib.DrawRectangle(this.posX, this.posY, this.width, this.height, Lib.RED);
+  runningRender = (direction = null) => {
+    if (direction === directionEnum.left) {
+      Lib.DrawRectangle(this.posX, this.posY, this.width, this.height, Lib.RED);
+    }
+
+    if (direction === directionEnum.right) {
+      Lib.DrawRectangle(
+        this.posX,
+        this.posY,
+        this.width,
+        this.height,
+        Lib.GREEN
+      );
+    }
   };
 
   /**

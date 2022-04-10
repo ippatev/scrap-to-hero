@@ -11,14 +11,20 @@ class ScreenView {
     this.player = new PlayerController();
   }
 
+  // Game restart functionality
   restart = () => {};
 
+  // Screen Runtime Checker
   isRunning = () => {
     return this.run && !Lib.WindowShouldClose();
   };
 
+  // Game loop
   update = () => {
-    this.player.actionListner();
+    // Logic starts here.
+    this.player.actionListener();
+
+    // Rendering graphics starts here.
     Lib.BeginDrawing();
     Lib.ClearBackground(Lib.BLUE);
     Lib.DrawText("Welcome to Ninjutsu Clashers", 220, 180, 30, Lib.WHITE);
@@ -26,6 +32,7 @@ class ScreenView {
     Lib.EndDrawing();
   };
 
+  // Destroy load imports
   unload = () => {};
 }
 
