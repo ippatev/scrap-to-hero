@@ -1,0 +1,26 @@
+{
+  "name": "ninjutsu-clash",
+  "version": "1.0.0",
+  "description": "A 2D platformer rpg  game that lets you use of many skills provided in the game to clash out with the environment.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "ninja",
+    "rpg",
+    "pve",
+    "javascript",
+    "raylib",
+    "game",
+    "2d-platformer"
+  ],
+  "author": "Tezada and Craux",
+  "license": "ISC",
+  "dependencies": {
+    "raylib": "^0.8.1"
+  },
+  "devDependencies": {}
+}
