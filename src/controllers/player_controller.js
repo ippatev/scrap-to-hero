@@ -1,7 +1,6 @@
 const { CharacterModel } = require("../models/character_model");
 const Lib = require("raylib");
 const { directionEnum } = require("../helpers/enums");
-const { public_path } = require("../helpers/functions");
 
 class PlayerController {
   #state = undefined;

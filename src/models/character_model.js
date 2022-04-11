@@ -141,6 +141,7 @@ class CharacterModel {
    */
   runningRender = (direction = null) => {
     if (direction === directionEnum.left) {
+      this.#directionSetter(direction);
       Lib.DrawRectangle(
         this.posX,
         this.posY,
@@ -148,6 +149,7 @@ class CharacterModel {
         this.height,
         this.color
       );
+
       Lib.DrawTextureRec(
         this.#runningInfo.texture,
         this.#runningInfo.frameRec,
@@ -157,6 +159,7 @@ class CharacterModel {
     }
 
     if (direction === directionEnum.right) {
+      this.#directionSetter(direction);
       Lib.DrawRectangle(
         this.posX,
         this.posY,
@@ -187,6 +190,36 @@ class CharacterModel {
     this.posX = x ?? this.posX;
     this.posY = y ?? this.posY;
     this.color = color ?? this.color;
+  };
+
+  #directionSetter = (direction) => {
+    if (direction === directionEnum.right) {
+      if (this.width < 0) {
+        this.width = this.width * -1;
+        const newRect = Lib.Rectangle(
+          this.frameX,
+          this.frameY,
+          this.width,
+          this.height
+        );
+        this.#runningInfo.frameRec = newRect;
+        this.#idleInfo.frameRec = newRect;
+      }
+    }
+
+    if (direction === directionEnum.left) {
+      if (this.width > 0) {
+        this.width = this.width * -1;
+        const newRect = Lib.Rectangle(
+          this.frameX,
+          this.frameY,
+          this.width,
+          this.height
+        );
+        this.#runningInfo.frameRec = newRect;
+        this.#idleInfo.frameRec = newRect;
+      }
+    }
   };
 
   destroy = () => {
