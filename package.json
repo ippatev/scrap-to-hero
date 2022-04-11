@@ -2,11 +2,12 @@
   "name": "ninjutsu-clash",
   "version": "1.0.0",
   "description": "A 2D platformer rpg  game that lets you use of many skills provided in the game to clash out with the environment.",
-  "main": "index.js",
+  "main": "app.js",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "make": "node ./scripts/make.js"
   },
   "keywords": [
     "ninja",
