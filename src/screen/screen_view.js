@@ -26,14 +26,16 @@ class ScreenView {
 
     // Rendering graphics starts here.
     Lib.BeginDrawing();
-    Lib.ClearBackground(Lib.BLUE);
-    Lib.DrawText("Welcome to Ninjutsu Clashers", 220, 180, 30, Lib.WHITE);
+    Lib.ClearBackground(Lib.VIOLET);
+    Lib.DrawText("Welcome to Ninjutsu Clashers", 220, 100, 30, Lib.WHITE);
     this.player.getState;
     Lib.EndDrawing();
   };
 
   // Destroy load imports
-  unload = () => {};
+  unload = () => {
+    this.player.destroy();
+  };
 }
 
 module.exports.ScreenView = ScreenView;

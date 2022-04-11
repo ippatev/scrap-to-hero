@@ -21,10 +21,8 @@ A 2D platformer rpg game that lets you use of many skills provided in the game t
 
 ## Developers Command
 
-### Commands
-
 - make - to make a new controller
-  - **character** type controller - to make boiler code controller with a instance of CharacterModel ;
+  - **character** type controller - to make boiler code controller with an instance of CharacterModel
 
 ```js
 

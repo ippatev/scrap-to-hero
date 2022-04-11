@@ -1,19 +1,28 @@
 const { CharacterModel } = require("../models/character_model");
 const Lib = require("raylib");
 const { directionEnum } = require("../helpers/enums");
+const { public_path } = require("../helpers/functions");
 
 class PlayerController {
   #state = undefined;
 
   constructor() {
     this.character = new CharacterModel();
+    this.character.posY = 200;
+    this.character.posX = 350;
   }
 
   get getState() {
     return this.#state;
   }
 
+  destroy = () => {
+    this.character.destroy();
+  };
+
   actionListener = () => {
+    this.character.frameRenderLogic();
+
     if (Lib.IsKeyDown(Lib.KEY_RIGHT)) {
       return this.#onKeyPressedAction(directionEnum.right);
     }
