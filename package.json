@@ -21,7 +21,7 @@
   "author": "Tezada and Craux",
   "license": "ISC",
   "dependencies": {
-    "raylib": "^0.8.1"
+    "raylib": "^0.9.0"
   },
   "devDependencies": {}
 }

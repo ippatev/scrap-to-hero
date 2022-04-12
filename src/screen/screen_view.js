@@ -1,6 +1,8 @@
 const Lib = require("raylib");
 const { PlayerController } = require("../controllers/player_controller");
 const { screenHeight, screenWidth, fps } = require("../helpers/constant");
+const { directionEnum } = require("../helpers/enums");
+const { CharacterModel } = require("../models/character_model");
 // const { CharacterModel } = require("../models/character_model");
 
 class ScreenView {
@@ -26,9 +28,13 @@ class ScreenView {
 
     // Rendering graphics starts here.
     Lib.BeginDrawing();
-    Lib.ClearBackground(Lib.VIOLET);
+    Lib.ClearBackground(Lib.GRAY);
+
+    Lib.BeginMode2D(this.player.getCamera);
+    Lib.DrawCircle(200, 200, 100, Lib.YELLOW);
+    this.player.getState();
+    Lib.EndMode2D();
     Lib.DrawText("Welcome to Ninjutsu Clashers", 220, 100, 30, Lib.WHITE);
-    this.player.getState;
     Lib.EndDrawing();
   };
 
