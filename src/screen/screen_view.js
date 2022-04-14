@@ -1,47 +1,50 @@
 const Lib = require("raylib");
+const { BorderlineController } = require("../controllers/borderline_controller");
 const { PlayerController } = require("../controllers/player_controller");
 const { screenHeight, screenWidth, fps } = require("../helpers/constant");
-const { directionEnum } = require("../helpers/enums");
-const { CharacterModel } = require("../models/character_model");
-// const { CharacterModel } = require("../models/character_model");
+const { ObjectModel } = require("../models/object_model");
 
 class ScreenView {
+  #run = undefined;
+  #player = undefined;
+  #object = undefined;
+  #borderObject = undefined;
+
   constructor() {
-    this.run = true;
-    Lib.InitWindow(screenWidth, screenHeight, "Ninjutsu Clash");
+    this.#run = true;
+    Lib.InitWindow(screenWidth, screenHeight, "Scrap to Hero");
     Lib.SetTargetFPS(fps);
-    this.player = new PlayerController();
+
+    this.#player = new PlayerController();
+
+    this.#object = new ObjectModel(Lib.GRAY);
+    this.#object.createObject({ height: 200, width: 50, posX: 700, posY: 200 });
+
+    this.#borderObject = new BorderlineController();
   }
 
-  // Game restart functionality
-  restart = () => {};
-
-  // Screen Runtime Checker
   isRunning = () => {
-    return this.run && !Lib.WindowShouldClose();
+    return this.#run && !Lib.WindowShouldClose();
   };
 
-  // Game loop
-  update = () => {
-    // Logic starts here.
-    this.player.actionListener();
+  // Render starts here
+  render = () => {
+    // action logic starts here
+    if (Lib.CheckCollisionRecs(this.#player.shape_bound, this.#object.shape_bound)) this.#object.show = false; //Collision check
 
-    // Rendering graphics starts here.
+    this.#player.actionListener();
+
+    // Drawing object
     Lib.BeginDrawing();
-    Lib.ClearBackground(Lib.GRAY);
-
-    Lib.BeginMode2D(this.player.getCamera);
-    Lib.DrawCircle(200, 200, 100, Lib.YELLOW);
-    this.player.getState();
-    Lib.EndMode2D();
-    Lib.DrawText("Welcome to Ninjutsu Clashers", 220, 100, 30, Lib.WHITE);
+    Lib.ClearBackground(Lib.GetColor(0x052c46ff));
+    this.#borderObject.constructObject();
+    this.#object.objectState();
+    this.#player.getState();
+    // Lib.DrawText("Scrap to hero", 345, 100, 30, Lib.WHITE);
     Lib.EndDrawing();
   };
 
-  // Destroy load imports
-  unload = () => {
-    this.player.destroy();
-  };
+  unload = () => {};
 }
 
 module.exports.ScreenView = ScreenView;

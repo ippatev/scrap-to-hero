@@ -1,6 +1,6 @@
-# Ninjutsu Clash
+# Scrap to Hero
 
-A 2D platformer rpg game that lets you use of many skills provided in the game to clash out with the environment. This project uses nodejs and raylib technology.
+A 2D rpg game that let you meet allies in every map level to defeat the boss. This project uses nodejs and raylib technology.
 
 ## Designs
 
